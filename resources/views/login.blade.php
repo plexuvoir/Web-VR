@@ -2,7 +2,7 @@
 
 @section('content')
 <div id="formContent" class="container">					
-	<form method="POST" action="{{route('login')}}" class="needs-validation" novalidate="">
+	<form method="POST" action="{{url('/login')}}" class="needs-validation" novalidate="">
 		@csrf
 		<div class="form-group">
 			<label for="title">Username</label>

@@ -8,5 +8,5 @@ Route::get('/', function () {
 });
 
 Route::get('/admin', 'AdminController@index');
-Route::get('/show-login', 'AuthController@showLogin');
+Route::get('/login', 'AuthController@showLogin');
 Route::post('/login', 'AuthController@login');
