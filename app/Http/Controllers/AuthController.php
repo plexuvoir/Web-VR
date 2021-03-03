@@ -19,10 +19,17 @@ class AuthController extends Controller
 		$data = User::where('name',$request->username)->firstOrFail();
 		if ($data) {
 			if(Hash::check($request->password,$data->password)){
+				session(['berhasil_login'=>true]);
 				return redirect('/admin');
 			}
 		}
-		return redirect('/login')->with('message','Username atau password salah');
+		//return redirect('/');
+		//return redirect('/login')->with('message','Username atau password salah');
+	}
+	public function logout(Request $request)
+	{
+		$request->session()->flush();
+		return redirect('/login');
 	}
 
 }
