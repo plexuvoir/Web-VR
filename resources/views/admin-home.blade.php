@@ -37,7 +37,8 @@
 				<div class="card-body">
 					<div class="row">
 						<div class="col-sm align-items-center d-flex">			
-							<h4>{{$tempatWisataArray['nama_tempat_wisata']}}</h4>
+							<!-- <h4>{{$tempatWisataArray['nama_tempat_wisata']}}</h4> -->
+							<h4>{{$tempatWisataArray->nama_tempat_wisata}}</h4>
 						</div>
 						<div class="col-sm">
 							<div class="clearfix">									
@@ -63,7 +64,8 @@
 	<div class="modal fade" id="formTempatWisataModal" tabindex="-1" aria-labelledby="formModalTitle" aria-hidden="true">
 		<div class="modal-dialog">
 			<div class="modal-content">
-				<form action="{{route('tambah-tempat-wisata')}}" method="post">	
+				<form action="{{route('tambah-tempat-wisata')}}" method="post" id="form_tempat_wisata">	
+					<input type="hidden" name="id" id="id">
 					<div class="modal-header">
 						<h5 class="modal-title text-primary" id="formModalTitle">Tambah Tempat Wisata</h5>
 						<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>

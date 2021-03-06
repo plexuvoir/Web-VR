@@ -27,4 +27,5 @@ Route::get('/spots/', 'SpotController@SpotArrays')->name('spots');
 Route::get('/tempat-wisata/{id}', 'SpotController@SpotSelects');
 Route::get('/tempat-wisata/edit/{id}', 'TempatWisataController@edit')->name('edit-tempat-wisata');
 Route::delete('/tempat-wisata/{id}', 'TempatWisataController@destroy');
+Route::post('/update-tempat-wisata/{id}', 'TempatWisataController@update');
 

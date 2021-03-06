@@ -37,13 +37,23 @@ class TempatWisataController extends Controller
 		return redirect('/admin-home')->with('status','Tempat Wisata Berhasil Dihapus.');
 	}
 
-	public function update(){
+	public function update(Request $request){		
+		$request->validate([
+			'nama_tempat_wisata' => 'required'
+		]);
+		TempatWisataModel::where('id',$request->id)
+		->update([
+			'nama_tempat_wisata'=>$request->nama_tempat_wisata
+		]);
+		return redirect('/admin-home')->with('status','Tempat Wisata Berhasil Diperbarui.');
 
 	}
 	public function edit($id){
-		echo json_encode(TempatWisataModel::select('*')
-                           ->where('id_tempat_wisata', '=', $id)
-                           ->get());
+		$tempatWisataModel = TempatWisataModel::select('*')
+                           ->where('id', '=', $id)
+                           ->get();
+		return $tempatWisataModel[0]->toJson();
+	
 
-	}
+	}	
 }
