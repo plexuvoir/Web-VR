@@ -6,6 +6,7 @@ $(function(){
 		$('#formModalTitle').html('Tambah Tempat Wisata');		
 		// $('#nama_tempat_wisata').val('');		
 		document.getElementById('form_tempat_wisata').reset();
+		$('.modal-content form').attr('action','/tambah-tempat-wisata');
 
 	});
 
