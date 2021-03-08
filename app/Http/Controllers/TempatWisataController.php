@@ -27,17 +27,17 @@ class TempatWisataController extends Controller
 		]);
 		return redirect('/admin-home')->with('status','Tempat Wisata Berhasil Ditambahkan.');
 	}
-	public function destroy($id_req)
+	public function destroy(Request $request)
 	{
 		// $tempatWisataModel = TempatWisataModel::select('*')
   //                          ->where('id', '=', $id_req)
   //                          ->get();			
 		// return $tempatWisataModel;
-		TempatWisataModel::destroy($id_req);
+		TempatWisataModel::destroy($request->id_hapus);
 		return redirect('/admin-home')->with('status','Tempat Wisata Berhasil Dihapus.');
 	}
 
-	public function update(Request $request){		
+	public function update(Request $request){				
 		$request->validate([
 			'nama_tempat_wisata' => 'required'
 		]);
@@ -48,7 +48,7 @@ class TempatWisataController extends Controller
 		return redirect('/admin-home')->with('status','Tempat Wisata Berhasil Diperbarui.');
 
 	}
-	public function edit($id){
+	public function getTempatWisata($id){
 		$tempatWisataModel = TempatWisataModel::select('*')
                            ->where('id', '=', $id)
                            ->get();

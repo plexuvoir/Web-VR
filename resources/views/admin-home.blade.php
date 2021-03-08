@@ -42,7 +42,7 @@
 						</div>
 						<div class="col-sm">
 							<div class="clearfix">									
-								<button type="button" class="btn btn-default btn-danger btn-sm pull-right mx-2" data-bs-toggle="modal" data-bs-target="#deleteTempatWisata">
+								<button type="button" class="btn btn-default btn-danger btn-sm pull-right mx-2 tempatWisataModalHapus" data-bs-toggle="modal" data-bs-target="#deleteTempatWisata" data-id="{{$tempatWisataArray['id']}}">
 									Hapus
 								</button>								
 								<a href="/tempat-wisata/{{$tempatWisataArray['id']}}" class="btn btn-default btn-success btn-sm pull-right mx-2">Detail</a>								
@@ -92,23 +92,23 @@
 	<div class="modal fade" id="deleteTempatWisata" tabindex="-1" aria-labelledby="modalTitleDelete" aria-hidden="true">
 		<div class="modal-dialog">
 			<div class="modal-content">
-				<div class="modal-header">
-					<h5 class="modal-title text-primary" id="modalTitleDelete">Hapus Tempat Wisata</h5>
-					<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-				</div>
-				<div class="modal-body">
-					<h5>Apakah Anda yakin ingin menghapus?</h5>					
-				</div>
-				<div class="modal-footer">
-					<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
-					<form method="post" action="/tempat-wisata/{{$tempatWisataArray['id']}}">
-						@method('delete')
+				<form method="post" action="/delete-tempat-wisata/{{$tempatWisataArray['id']}}">						
+					<input type="hidden" class="form-control" id="id_hapus" name="id_hapus">
+					<div class="modal-header">
+						<h5 class="modal-title text-primary" id="modalTitleDelete">Hapus Tempat Wisata</h5>
+						<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+					</div>
+					<div class="modal-body">
 						@csrf
+						<h5>Apakah Anda yakin ingin menghapus?</h5>					
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>	
 						<button type="submit" class="btn btn-danger">
 							Hapus
 						</button>
-					</form>						
-				</div>
+					</div>
+				</form>						
 			</div>
 		</div>
 	</div>
