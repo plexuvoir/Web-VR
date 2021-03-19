@@ -29,4 +29,10 @@ Route::get('/tempat-wisata/edit/{id}', 'TempatWisataController@getTempatWisata')
 Route::post('/delete-tempat-wisata/{id}', 'TempatWisataController@destroy');
 Route::post('/update-tempat-wisata/{id}', 'TempatWisataController@update');
 Route::post('/tambah-spot', 'SpotController@tambah')->name('tambah-spot');
-
+Route::post('/delete-spot/{id_spot}', 'SpotController@destroy');
+Route::get('/spot/edit/{id}', 'SpotController@getSpot')->name('edit-spot');
+Route::post('/update-spot/{id}', 'SpotController@update');
+Route::post('/tambah-tombol','TombolController@tambahTombol')->name('tambah-tombol');
+Route::get('/tombol/edit/{id}','TombolController@getTombol')->name('edit-tombol');
+Route::post('/update-tombol/{id}', 'TombolController@update');
+Route::post('/delete-tombol/{id_tombol}', 'TombolController@destroy');

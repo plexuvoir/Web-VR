@@ -53,7 +53,5 @@ class TempatWisataController extends Controller
                            ->where('id', '=', $id)
                            ->get();
 		return $tempatWisataModel[0]->toJson();
-	
-
 	}	
 }
