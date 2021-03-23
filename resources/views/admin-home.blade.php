@@ -3,7 +3,7 @@
 @section('content')
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark py-2">
 	<div class="container-fluid">
-		<a class="navbar-brand" href="#">Home</a>		
+		<a class="navbar-brand" href="admin-home">Home</a>		
 		<form method="GET" action="{{route('logout')}}">
 			<button type="submit" class="btn btn-danger">Logout</button>
 		</form>

@@ -3,7 +3,7 @@
 @section('content')
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark py-2">
 	<div class="container-fluid">
-		<a class="navbar-brand" href="#">Home</a>		
+		<a class="navbar-brand" href="/admin-home">Home</a>		
 		<form method="GET" action="{{route('logout')}}">
 			<button type="submit" class="btn btn-danger">Logout</button>
 		</form>		
@@ -73,7 +73,31 @@
 					</div>
 				</div>
 			</div>
-			
+
+			<div class="modal fade" id="deleteSpot" tabindex="-1" aria-labelledby="modalTitleDelete" aria-hidden="true">
+				<div class="modal-dialog">
+					<div class="modal-content">
+						<form method="post" action="/delete-spot/{{$spotArray['id_spot']}}">
+							<input type="hidden" name="id_tempat_wisata_hapus" id="id_tempat_wisata_hapus">		
+							<input type="hidden" class="form-control" id="id_hapus" name="id_hapus">
+							<div class="modal-header">
+								<h5 class="modal-title text-primary" id="modalTitleDelete">Hapus Spot</h5>
+								<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+							</div>
+							<div class="modal-body">
+								@csrf
+								<h5>Apakah Anda yakin ingin menghapus?</h5>					
+							</div>
+							<div class="modal-footer">
+								<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>	
+								<button type="submit" class="btn btn-danger">
+									Hapus
+								</button>
+							</div>
+						</form>						
+					</div>
+				</div>
+			</div>
 			@empty
 			<div class="alert alert-secondary">
 				Belum ada spot.
@@ -217,7 +241,7 @@
 						@csrf
 						<div class="form-group">
 							<label for="spot_for">Tombol untuk Spot</label>
-							<select name="spot_for" id="spot_for" class="form-control mb-3">
+							<select name="spot_for" id="spot_for" class="form-control mb-3" required>
 								@foreach ($spotArrays as $spotArray)
 								<option value="{{$spotArray['id_spot']}}">
 									{{$spotArray['nama_spot']}}
@@ -225,7 +249,7 @@
 								@endforeach
 							</select>	
 							<label for="spot_in">Tombol pada Spot</label>
-							<select name="spot_in" id="spot_in" class="form-control mb-3">
+							<select name="spot_in" id="spot_in" class="form-control mb-3" required>
 								@foreach ($spotArrays as $spotArray)
 								<option value="{{$spotArray['id_spot']}}">
 									{{$spotArray['nama_spot']}}
@@ -243,19 +267,19 @@
 										X
 									</div>
 									<div style="float: left; width: 70px;" class="mx-3">
-										<input type="text" name="x_pos" id="x_pos" class="form-control">
+										<input type="text" name="x_pos" id="x_pos" class="form-control" required>
 									</div>
 									<div style="float: left;">
 										Y
 									</div>
 									<div style="float: left; width: 70px;" class="mx-3">
-										<input type="text" name="y_pos" id="y_pos" class="form-control">
+										<input type="text" name="y_pos" id="y_pos" class="form-control" required>
 									</div>
 									<div style="float: left;">
 										Z
 									</div>
 									<div style="float: left; width: 70px;" class="mx-3">
-										<input type="text" name="z_pos" id="z_pos" class="form-control">
+										<input type="text" name="z_pos" id="z_pos" class="form-control" required>
 									</div>
 								</div>									
 							</div>			
@@ -270,19 +294,19 @@
 										X
 									</div>
 									<div style="float: left; width: 70px;" class="mx-3">
-										<input type="text" name="x_rot" id="x_rot" class="form-control">
+										<input type="text" name="x_rot" id="x_rot" class="form-control" required>
 									</div>
 									<div style="float: left;">
 										Y
 									</div>
 									<div style="float: left; width: 70px;" class="mx-3">
-										<input type="text" name="y_rot" id="y_rot" class="form-control">
+										<input type="text" name="y_rot" id="y_rot" class="form-control" required>
 									</div>
 									<div style="float: left;">
 										Z
 									</div>
 									<div style="float: left; width: 70px;" class="mx-3">
-										<input type="text" name="z_rot" id="z_rot" class="form-control">
+										<input type="text" name="z_rot" id="z_rot" class="form-control" required>
 									</div>
 								</div>									
 							</div>							

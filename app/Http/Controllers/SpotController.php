@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 use DB;
-use App\Models\SpotModelsTest;
+use App\Models\SpotModel;
 use App\Models\TombolSpot;
 use App\Models\TempatWisataModel;
 use Illuminate\Http\Request;
@@ -12,14 +12,14 @@ class SpotController extends Controller
 
 	public function SpotArrays()
 	{
-		$spotArrays = SpotModelsTest::all();
+		$spotArrays = SpotModel::all();
 		// dd($tempatWisataArrays);
 		return view('spot', compact('spotArrays'));
 	}
 
 	public function SpotSelects($id_req)
 	{	
-		$spotArrays = SpotModelsTest::select('*')
+		$spotArrays = SpotModel::select('*')
 		->where('id_tempat_wisata', '=', $id_req)
 		->get();	
 
@@ -34,8 +34,8 @@ class SpotController extends Controller
 		// ->get();
 
 		$tombolArrays = TombolSpot::select('tombol_spots.*', 't1.nama_spot as nama_in', 't2.nama_spot as nama_own')
-		->join('spot_models_tests as t1', 'tombol_spots.id_in', '=', 't1.id_spot')
-		->join('spot_models_tests as t2', 'tombol_spots.id_own', '=', 't2.id_spot')
+		->join('spot_models as t1', 'tombol_spots.id_in', '=', 't1.id_spot')
+		->join('spot_models as t2', 'tombol_spots.id_own', '=', 't2.id_spot')
 		->where('tombol_spots.id_tempat_wisata','=',$id_req)
 		// ->select('tombol_spots.*', 't1.nama_spot as nama_in', 't2.nama_spot as nama_own')
 		->get();
@@ -72,7 +72,7 @@ class SpotController extends Controller
 			// 'permukaan_sore' => 'required'
 		]);
 		// dd($request);
-		SpotModelsTest::create([
+		SpotModel::create([
 			'nama_spot' => $request->nama_spot,
 			'link_video_pagi' => $request->link_vid_pagi,
 			'link_suara_pagi' => $request->link_aud_pagi,
@@ -90,7 +90,7 @@ class SpotController extends Controller
 	}
 	public function getSpot($id){
 
-		$spotModel = SpotModelsTest::select('*')
+		$spotModel = SpotModel::select('*')
 		->where('id_spot', '=', $id)
 		->get();
 		return $spotModel[0]->toJson();
@@ -101,7 +101,7 @@ class SpotController extends Controller
 		$request->validate([
 			'nama_spot' => 'required'
 		]);
-		SpotModelsTest::where('id_spot',$request->id_spot)
+		SpotModel::where('id_spot',$request->id_spot)
 		->update([
 			'nama_spot'=>$request->nama_spot,
 			'link_video_pagi'=>$request->link_vid_pagi,
@@ -120,7 +120,7 @@ class SpotController extends Controller
 	public function destroy(Request $request){
 		// dd($request->id_hapus);
 
-		SpotModelsTest::where('id_spot', $request->id_hapus)->delete();
+		SpotModel::where('id_spot', $request->id_hapus)->delete();
 		// dd($request->id_tempat_wisata_hapus);
 		// SpotModelsTest::destroy($request->id_hapus);
 		return redirect("/tempat-wisata/$request->id_tempat_wisata_hapus")->with('status','Spot Berhasil Dihapus.');
