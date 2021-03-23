@@ -32,7 +32,7 @@
 				{{ session('status') }}
 			</div>
 			@endif			
-			@foreach ($tempatWisataArrays as $tempatWisataArray)
+			@forelse ($tempatWisataArrays as $tempatWisataArray)
 			<div class="card my-1">
 				<div class="card-body">
 					<div class="row">
@@ -78,7 +78,11 @@
 				</div>
 			</div>
 
-			@endforeach
+			@empty
+			<div class="alert alert-secondary">
+				Belum ada tempat wisata.
+			</div>	
+			@endforelse
 		</div>
 		<div class="col-sm">
 			

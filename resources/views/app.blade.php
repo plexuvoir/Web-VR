@@ -55,7 +55,8 @@
 					color:white;
 					font-size: 2rem; !important;
 					margin: 0px;
-				}			
+				}
+					
 			</style>
 		</head>
 		<body>

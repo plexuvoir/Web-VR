@@ -29,7 +29,7 @@
 				{{ session('status') }}
 			</div>
 			@endif		
-			@foreach ($spotArrays as $spotArray)
+			@forelse ($spotArrays as $spotArray)
 			<div class="card my-1">
 				<div class="card-body">
 					<div class="row">
@@ -74,8 +74,13 @@
 				</div>
 			</div>
 			
+			@empty
+			<div class="alert alert-secondary">
+				Belum ada spot.
+			</div>					
 
-			@endforeach
+
+			@endforelse
 
 			<div class="row mt-5">
 				<div class="col-sm my-3">
@@ -92,7 +97,7 @@
 				{{ session('status_tombol') }}
 			</div>
 			@endif	
-			@foreach ($tombolArrays as $tombolArray)			
+			@forelse ($tombolArrays as $tombolArray)			
 			<div class="card my-1">
 				<div class="card-body">
 					<div class="row">
@@ -136,8 +141,11 @@
 					</div>
 				</div>
 			</div>
-			
-			@endforeach
+			@empty
+			<div class="alert alert-secondary">
+				Belum ada tombol.
+			</div>	
+			@endforelse
 
 		</div>
 		<div class="col-sm">			
