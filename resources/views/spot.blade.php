@@ -229,7 +229,7 @@
 	<div class="modal fade" id="formTombolModal" tabindex="-1" aria-labelledby="formTombolTitle" aria-hidden="true">
 		<div class="modal-dialog">
 			<div class="modal-content">
-				<form action="{{route('tambah-tombol')}}" method="post" id="form_tombol">	
+				<form action="{{route('tambah-tombol')}}" method="post" id="form_tombol">						
 					<input type="hidden" name="id_tempat_wisata" id="id_tempat_wisata" value={{$id_req}}>
 					<input type="hidden" name="id_tombol" id="id_tombol">
 					<div class="modal-header">
@@ -237,7 +237,6 @@
 						<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 					</div>
 					<div class="modal-body">
-
 						@csrf
 						<div class="form-group">
 							<label for="spot_for">Tombol untuk Spot</label>
