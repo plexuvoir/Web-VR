@@ -40,4 +40,10 @@ Route::group(['middleware'=>'LoginCheckMiddleware'], function(){
 Route::get('/login', 'AuthController@showLogin')->name('login');
 Route::post('/login', 'AuthController@login')->name('login');
 Route::get('/logout', 'AuthController@logout')->name('logout');
-
+// Route::get('/user', function () {
+// 	return view('user-home');
+// });
+Route::get('/user-spot/{id_spot}', 'SpotController@tampilPanoramaSpot')->name('user-spot');
+Route::get('/user-spot-sore/{id_spot}', 'SpotController@tampilPanoramaSpotSore')->name('user-spot-sore');
+Route::get('/user-vr/{id_tempat_wisata}', 'SpotController@tampilPanorama')->name('user-vr');
+Route::get('/user-home', 'TempatWisataController@tampilUserHome')->name('user-home');

@@ -148,7 +148,7 @@
 							<input type="hidden" name="id_tombol_tempat_wisata_hapus" id="id_tombol_tempat_wisata_hapus">		
 							<input type="hidden" class="form-control" id="id_tombol_hapus" name="id_tombol_hapus">
 							<div class="modal-header">
-								<h5 class="modal-title text-primary" id="modalTitleDelete">Hapus Spot</h5>
+								<h5 class="modal-title text-primary" id="modalTitleDelete">Hapus Tombol</h5>
 								<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 							</div>
 							<div class="modal-body">

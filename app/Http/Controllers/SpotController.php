@@ -59,19 +59,8 @@ class SpotController extends Controller
 	public function tambah(Request $request)
 	{						
 		$request->validate([
-			'nama_spot' => 'required',
-			// 'link_vid_pagi' => 'required',
-			// 'link_aud_pagi' => 'required',
-			// 'angin_pagi' => 'required',
-			// 'suhu_pagi' => 'required',
-			// 'permukaan_pagi' => 'required',
-			// 'link_vid_sore' => 'required',
-			// 'link_aud_sore' => 'required',
-			// 'angin_sore' => 'required',
-			// 'suhu_sore' => 'required',
-			// 'permukaan_sore' => 'required'
-		]);
-		// dd($request);
+			'nama_spot' => 'required',			
+		]);		
 		SpotModel::create([
 			'nama_spot' => $request->nama_spot,
 			'link_video_pagi' => $request->link_vid_pagi,
@@ -117,16 +106,56 @@ class SpotController extends Controller
 		]);
 		return redirect("/tempat-wisata/$request->id_tempat_wisata")->with('status','Spot Berhasil Diperbarui.');
 	}
-	public function destroy(Request $request){
-		// dd($request->id_hapus);
-
-		SpotModel::where('id_spot', $request->id_hapus)->delete();
-		// dd($request->id_tempat_wisata_hapus);
-		// SpotModelsTest::destroy($request->id_hapus);
+	public function destroy(Request $request){		
+		SpotModel::where('id_spot', $request->id_hapus)->delete();		
 		return redirect("/tempat-wisata/$request->id_tempat_wisata_hapus")->with('status','Spot Berhasil Dihapus.');
 	}
 	public function tambahTombol(Request $request){
 		dd($request);
 
+	}
+
+	public function tampilPanorama($id_tempat_wisata){
+		// dd(SpotModel::where('id_spot', '9')->get());
+		// dd($id_tempat_wisata);	
+		$spotArrays = SpotModel::select('*')
+		->where('id_tempat_wisata', '=', $id_tempat_wisata)
+		->first();			
+		$tombolArrays = TombolSpot::select('tombol_spots.*', 't1.nama_spot as nama_in', 't2.nama_spot as nama_own')
+		->join('spot_models as t1', 'tombol_spots.id_in', '=', 't1.id_spot')
+		->join('spot_models as t2', 'tombol_spots.id_own', '=', 't2.id_spot')
+		->where('tombol_spots.id_in','=',$spotArrays->id_spot)
+		// ->select('tombol_spots.*', 't1.nama_spot as nama_in', 't2.nama_spot as nama_own')
+		->get();
+		// dd($tombolArrays);
+		return view('user-vr', compact('spotArrays','tombolArrays'));
+
+		// $spotArrays = SpotModel::where('id_spot', '9')->get();
+		// return view('user-vr', compact('spotArrays'));
+	}
+
+	public function tampilPanoramaSpot($id_spot){
+		$spotArrays = SpotModel::select('*')
+		->where('id_spot', '=', $id_spot)
+		->first();			
+		$tombolArrays = TombolSpot::select('tombol_spots.*', 't1.nama_spot as nama_in', 't2.nama_spot as nama_own')
+		->join('spot_models as t1', 'tombol_spots.id_in', '=', 't1.id_spot')
+		->join('spot_models as t2', 'tombol_spots.id_own', '=', 't2.id_spot')
+		->where('tombol_spots.id_in','=',$spotArrays->id_spot)
+		// ->select('tombol_spots.*', 't1.nama_spot as nama_in', 't2.nama_spot as nama_own')
+		->get();
+		return view('user-vr', compact('spotArrays','tombolArrays'));
+	}
+	public function tampilPanoramaSpotSore($id_spot){
+		$spotArrays = SpotModel::select('*')
+		->where('id_spot', '=', $id_spot)
+		->first();			
+		$tombolArrays = TombolSpot::select('tombol_spots.*', 't1.nama_spot as nama_in', 't2.nama_spot as nama_own')
+		->join('spot_models as t1', 'tombol_spots.id_in', '=', 't1.id_spot')
+		->join('spot_models as t2', 'tombol_spots.id_own', '=', 't2.id_spot')
+		->where('tombol_spots.id_in','=',$spotArrays->id_spot)
+		// ->select('tombol_spots.*', 't1.nama_spot as nama_in', 't2.nama_spot as nama_own')
+		->get();
+		return view('user-vr-sore', compact('spotArrays','tombolArrays'));
 	}
 }

@@ -29,10 +29,6 @@ class TempatWisataController extends Controller
 	}
 	public function destroy(Request $request)
 	{
-		// $tempatWisataModel = TempatWisataModel::select('*')
-  //                          ->where('id', '=', $id_req)
-  //                          ->get();			
-		// return $tempatWisataModel;
 		TempatWisataModel::destroy($request->id_hapus);
 		return redirect('/admin-home')->with('status','Tempat Wisata Berhasil Dihapus.');
 	}
@@ -54,4 +50,9 @@ class TempatWisataController extends Controller
                            ->get();
 		return $tempatWisataModel[0]->toJson();
 	}	
+	public function tampilUserHome(){
+		$tempatWisataArrays = TempatWisataModel::all();
+		// dd($tempatWisataArrays);
+		return view('user-home', compact('tempatWisataArrays'));
+	}
 }
