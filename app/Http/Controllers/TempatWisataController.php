@@ -55,4 +55,9 @@ class TempatWisataController extends Controller
 		// dd($tempatWisataArrays);
 		return view('user-home', compact('tempatWisataArrays'));
 	}
+	public function tampilUserHomeTest(){
+		$tempatWisataArrays = TempatWisataModel::all();
+		// dd($tempatWisataArrays);
+		return view('user-home-test', compact('tempatWisataArrays'));
+	}
 }

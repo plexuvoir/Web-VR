@@ -47,3 +47,4 @@ Route::get('/user-spot/{id_spot}', 'SpotController@tampilPanoramaSpot')->name('u
 Route::get('/user-spot-sore/{id_spot}', 'SpotController@tampilPanoramaSpotSore')->name('user-spot-sore');
 Route::get('/user-vr/{id_tempat_wisata}', 'SpotController@tampilPanorama')->name('user-vr');
 Route::get('/user-home', 'TempatWisataController@tampilUserHome')->name('user-home');
+Route::get('/user-home-test', 'TempatWisataController@tampilUserHomeTest')->name('user-home-test');

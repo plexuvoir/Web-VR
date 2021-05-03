@@ -23,6 +23,8 @@
 			</a-camera>
 			<!-- </a-entity> -->
 			<!--360 stereo LR-->
+
+			<a-text font="roboto" value="Selamat Datang di VR Pantai Malang\n Silakan pilih pantai yang ingin dikunjungi." width="10" position="0 7.5 -10" rotation="0 0 0" align="center" color="black"></a-text>		
 		<!-- <a-assets>
 			<img id="play" src="https://cdn.glitch.com/d7743f86-5ed0-4cb5-b749-2d186df7515a%2Ficons8-play-64.png?v=1619076158162">
 			<img id="pause" src="https://cdn.glitch.com/d7743f86-5ed0-4cb5-b749-2d186df7515a%2Ficons8-pause-64.png?v=1619076158162">
@@ -40,17 +42,23 @@
 		<!-- <a-entity immersive-video="type: 360_mono_horizontal; source:https://cdn.glitch.com/d7743f86-5ed0-4cb5-b749-2d186df7515a%2Fmaldives.mp4?v=1618466951948"></a-entity>
 			<a-image id="videoControls" src="https://cdn.glitch.com/d7743f86-5ed0-4cb5-b749-2d186df7515a%2Ficons8-play-64.png?v=1619076158162" position="0 1 -2"></a-image> -->
 			@php
-			$i = 9;			
+			$i = 5;				
 			@endphp
 
 			@foreach ($tempatWisataArrays as $tempatWisataArray)
 			
-			<a-entity geometry="primitive: box; height:2; width:20; depth:0.5" material="color:#0275d8; side: double; opacity:1;" position="0 {{$i}} -20" rotation="0 0 0" href="user-vr/{{$tempatWisataArray->id}}">
+			<!-- <a-entity geometry="primitive: box; height:2; width:20; depth:0.5" material="color:#0275d8; side: double; opacity:1;" position="0 {{$i}} -20" rotation="0 0 0" href="user-vr/{{$tempatWisataArray->id}}">
 				<a-text font="kelsonsans" value="{{$tempatWisataArray->nama_tempat_wisata}}" width="20" position="0 0 1" rotation="0 0 0" align="center" href="/user-vr/{{$tempatWisataArray->id}}"></a-text>
-				<!-- <a-image id="thumbnail" src="{{$tempatWisataArray->thumbnail}}" width="4" height="4" position="0 -2 1" rotation="0 0 0" align="center" href="user-vr/{{$tempatWisataArray->id}}"></a-image> -->
-			</a-entity>
+				<a-image id="thumbnail" src="{{$tempatWisataArray->thumbnail}}" width="4" height="4" position="0 -2 1" rotation="0 0 0" align="center" href="user-vr/{{$tempatWisataArray->id}}"></a-image>
+			</a-entity> -->
+
+			<a-image id="thumbnail" src="{{$tempatWisataArray->thumbnail}}" width="5" height="3" position="0 {{$i}} -10" rotation="0 0 0" href="user-vr/{{$tempatWisataArray->id}}">										
+				<a-plane color="#CCC" height="0.4" width="5" position="0 1.3 0.01" ></a-plane>
+				<a-text font="roboto" value="{{$tempatWisataArray->nama_tempat_wisata}}" position="0 1.3 0.01" align="center" width="3" color="black" scale="2 2 2"></a-text>				
+			</a-image>			
+
 			@php
-			$i-=3;			
+			$i-=3.5;			
 			@endphp			
 			@endforeach
 			
