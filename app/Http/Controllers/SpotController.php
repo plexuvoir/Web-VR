@@ -12,8 +12,7 @@ class SpotController extends Controller
 
 	public function SpotArrays()
 	{
-		$spotArrays = SpotModel::all();
-		// dd($tempatWisataArrays);
+		$spotArrays = SpotModel::all();		
 		return view('spot', compact('spotArrays'));
 	}
 
@@ -22,38 +21,15 @@ class SpotController extends Controller
 		$spotArrays = SpotModel::select('*')
 		->where('id_tempat_wisata', '=', $id_req)
 		->get();	
-
-		// $tombolArrays = TombolSpot::select('*')
-		// ->where('id_tempat_wisata', '=', $id_req)
-		// ->get();	
-
-		// $tombolArrays = DB::table('tombol_spots')
-		// ->join('spot_models_tests as t1', 'id_in', '=', 't1.id_spot')
-		// ->join('spot_models_tests as t2', 'id_own', '=', 't2.id_spot')
-		// ->select('tombol_spots.*', 't1.nama_spot as nama_in', 't2.nama_spot as nama_own')
-		// ->get();
-
 		$tombolArrays = TombolSpot::select('tombol_spots.*', 't1.nama_spot as nama_in', 't2.nama_spot as nama_own')
 		->join('spot_models as t1', 'tombol_spots.id_in', '=', 't1.id_spot')
 		->join('spot_models as t2', 'tombol_spots.id_own', '=', 't2.id_spot')
-		->where('tombol_spots.id_tempat_wisata','=',$id_req)
-		// ->select('tombol_spots.*', 't1.nama_spot as nama_in', 't2.nama_spot as nama_own')
+		->where('tombol_spots.id_tempat_wisata','=',$id_req)		
 		->get();
 
 		$namaTempatWisataArrays = TempatWisataModel::select('nama_tempat_wisata')
 		->where('id','=',$id_req)
 		->get();
-
-		// $namaTempatWisata = SpotModelsTest::select('t1.nama_tempat_wisata')
-		// ->join('tempat_wisata_models as t1', 'spot_models_tests.id_tempat_wisata', '=', 't1.id')
-		// ->get();
-		// dd($namaTempatWisata);
-
-		// $spotArrays = TombolSpot::with('SpotModelsTest')->get();
-
-		// $spotArrays = SpotModelsTest::where('id_tempat_wisata', $id_req)->first();		
-		// dd($tombolArrays);
-		// return view('spot', ["spotArrays"=>$spotArrays, "id_req"=>$id_req]);
 		return view('spot', compact('spotArrays','id_req','tombolArrays','namaTempatWisataArrays'));
 	}
 	public function tambah(Request $request)
@@ -116,22 +92,21 @@ class SpotController extends Controller
 	}
 
 	public function tampilPanorama($id_tempat_wisata){
-		// dd(SpotModel::where('id_spot', '9')->get());
-		// dd($id_tempat_wisata);	
 		$spotArrays = SpotModel::select('*')
 		->where('id_tempat_wisata', '=', $id_tempat_wisata)
-		->first();			
-		$tombolArrays = TombolSpot::select('tombol_spots.*', 't1.nama_spot as nama_in', 't2.nama_spot as nama_own')
-		->join('spot_models as t1', 'tombol_spots.id_in', '=', 't1.id_spot')
-		->join('spot_models as t2', 'tombol_spots.id_own', '=', 't2.id_spot')
-		->where('tombol_spots.id_in','=',$spotArrays->id_spot)
-		// ->select('tombol_spots.*', 't1.nama_spot as nama_in', 't2.nama_spot as nama_own')
-		->get();
-		// dd($tombolArrays);
-		return view('user-vr', compact('spotArrays','tombolArrays'));
+		->first();	
 
-		// $spotArrays = SpotModel::where('id_spot', '9')->get();
-		// return view('user-vr', compact('spotArrays'));
+		if($spotArrays){
+			$tombolArrays = TombolSpot::select('tombol_spots.*', 't1.nama_spot as nama_in', 't2.nama_spot as nama_own')
+			->join('spot_models as t1', 'tombol_spots.id_in', '=', 't1.id_spot')
+			->join('spot_models as t2', 'tombol_spots.id_own', '=', 't2.id_spot')
+			->where('tombol_spots.id_in','=',$spotArrays->id_spot)		
+			->get();		
+			return view('user-vr', compact('spotArrays','tombolArrays'));
+		} else {
+			$tombolArrays=null;
+			return view('user-vr', compact('spotArrays','tombolArrays'));
+		}		
 	}
 
 	public function tampilPanoramaSpot($id_spot){
@@ -141,8 +116,7 @@ class SpotController extends Controller
 		$tombolArrays = TombolSpot::select('tombol_spots.*', 't1.nama_spot as nama_in', 't2.nama_spot as nama_own')
 		->join('spot_models as t1', 'tombol_spots.id_in', '=', 't1.id_spot')
 		->join('spot_models as t2', 'tombol_spots.id_own', '=', 't2.id_spot')
-		->where('tombol_spots.id_in','=',$spotArrays->id_spot)
-		// ->select('tombol_spots.*', 't1.nama_spot as nama_in', 't2.nama_spot as nama_own')
+		->where('tombol_spots.id_in','=',$spotArrays->id_spot)		
 		->get();
 		return view('user-vr', compact('spotArrays','tombolArrays'));
 	}
@@ -153,8 +127,7 @@ class SpotController extends Controller
 		$tombolArrays = TombolSpot::select('tombol_spots.*', 't1.nama_spot as nama_in', 't2.nama_spot as nama_own')
 		->join('spot_models as t1', 'tombol_spots.id_in', '=', 't1.id_spot')
 		->join('spot_models as t2', 'tombol_spots.id_own', '=', 't2.id_spot')
-		->where('tombol_spots.id_in','=',$spotArrays->id_spot)
-		// ->select('tombol_spots.*', 't1.nama_spot as nama_in', 't2.nama_spot as nama_own')
+		->where('tombol_spots.id_in','=',$spotArrays->id_spot)		
 		->get();
 		return view('user-vr-sore', compact('spotArrays','tombolArrays'));
 	}

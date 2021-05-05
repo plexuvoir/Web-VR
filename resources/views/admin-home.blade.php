@@ -17,11 +17,6 @@
 					<h2>Daftar Tempat Wisata</h2>
 				</div>
 				<div class="col-sm my-3"> 
-					<!-- <form method="GET" action="{{route('form')}}">
-						<button type="submit" class="btn btn-primary pull-right">
-							Tambah
-						</button>
-					</form>	 -->				
 					<button type="button" class="btn btn-primary pull-right btnTambahTempatWisata" data-bs-toggle="modal" data-bs-target="#formTempatWisataModal">
 						Tambah
 					</button>
@@ -36,8 +31,7 @@
 			<div class="card my-1">
 				<div class="card-body">
 					<div class="row">
-						<div class="col-sm align-items-center d-flex">			
-							<!-- <h4>{{$tempatWisataArray['nama_tempat_wisata']}}</h4> -->
+						<div class="col-sm align-items-center d-flex">										
 							<h4>{{$tempatWisataArray->nama_tempat_wisata}}</h4>
 						</div>
 						<div class="col-sm">
@@ -103,6 +97,8 @@
 						<div class="form-group">
 							<label for="nama_tempat_wisata">Nama Tempat Wisata</label>
 							<input type="text" class="form-control" id="nama_tempat_wisata" name="nama_tempat_wisata" required>
+							<label for="thumbnail_tempat_wisata">Thumbnail</label>
+							<input type="text" class="form-control" id="thumbnail_tempat_wisata" name="thumbnail_tempat_wisata">
 						</div>
 
 
@@ -115,13 +111,6 @@
 			</div>
 		</div>
 	</div>
-
-	
-
-	
-
 </div>
-
-
 
 @endsection

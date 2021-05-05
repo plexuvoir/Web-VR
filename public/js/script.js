@@ -4,7 +4,6 @@ $(function(){
 	$('.btnTambahTempatWisata').on('click', function(){
 
 		$('#formModalTitle').html('Tambah Tempat Wisata');		
-		// $('#nama_tempat_wisata').val('');		
 		document.getElementById('form_tempat_wisata').reset();
 		$('.modal-content form').attr('action','/tambah-tempat-wisata');
 
@@ -17,12 +16,10 @@ $(function(){
 		$.ajax({		
 			url: '/tempat-wisata/edit/' + id,			
 			method: 'get',
-			// dataType: json,			
 			success: function(data){	
-
-				data=JSON.parse(data);			
-				// console.log(data);
+				data=JSON.parse(data);							
 				$('#nama_tempat_wisata').val(data.nama_tempat_wisata);
+				$('#thumbnail_tempat_wisata').val(data.thumbnail);
 				$('#id').val(data.id);
 				$('.modal-content form').attr('action','/update-tempat-wisata/'+data.id);
 			}
@@ -33,14 +30,11 @@ $(function(){
 
 
 	$('.tempatWisataModalHapus').on('click', function(){
-
 		const id = $(this).data('id');
 		$.ajax({		
 			url: '/tempat-wisata/edit/' + id,			
 			method: 'get',
-			// dataType: json,			
 			success: function(data){	
-
 				data=JSON.parse(data);			
 				$('#id_hapus').val(data.id);				
 				$('.modal-content form').attr('action','/delete-tempat-wisata/'+data.id);
@@ -53,7 +47,6 @@ $(function(){
 	$('.btnTambahSpot').on('click', function(){
 
 		$('#formModalTitle').html('Tambah Spot');		
-		// $('#nama_tempat_wisata').val('');		
 		document.getElementById('form_spot').reset();
 		$('.modal-content form').attr('action','/tambah-spot');
 
@@ -62,16 +55,12 @@ $(function(){
 	$('.spotModalEdit').on('click', function(){
 
 		$('#formModalTitle').html('Edit Spot');		
-		const id = $(this).data('id');
-		// console.log(id);
+		const id = $(this).data('id');		
 		$.ajax({		
 			url: '/spot/edit/' + id,			
 			method: 'get',
-			// dataType: json,			
 			success: function(data){	
-
-				data=JSON.parse(data);			
-				// console.log(data);
+				data=JSON.parse(data);							
 				$('#nama_spot').val(data.nama_spot);
 				$('#link_vid_pagi').val(data.link_video_pagi);
 				$('#link_aud_pagi').val(data.link_suara_pagi);
@@ -93,16 +82,12 @@ $(function(){
 
 	$('.spotModalHapus').on('click', function(){
 
-		const id = $(this).data('id');
-		// console.log(id);
+		const id = $(this).data('id');		
 		$.ajax({		
 			url: '/spot/edit/' + id,			
-			method: 'get',
-			// dataType: json,			
+			method: 'get',					
 			success: function(data){	
-
 				data=JSON.parse(data);		
-				// console.log(data.id_tempat_wisata);
 				$('#id_hapus').val(data.id_spot);				
 				$('#id_tempat_wisata_hapus').val(data.id_tempat_wisata);	
 				$('.modal-content form').attr('action','/delete-spot/'+data.id);
@@ -113,18 +98,13 @@ $(function(){
 	});
 
 	$('.tombolModalEdit').on('click', function(){
-
 		$('#formTombolTitle').html('Edit Tombol');		
-		const id = $(this).data('id');
-		// console.log(id);
+		const id = $(this).data('id');		
 		$.ajax({		
 			url: '/tombol/edit/' + id,			
 			method: 'get',
-			// dataType: json,			
 			success: function(data){	
-
 				data=JSON.parse(data);			
-				// console.log(data);
 				$('#spot_for').val(data.id_own);
 				$('#spot_in').val(data.id_in);
 				$('#x_pos').val(data.x_pos);
@@ -141,30 +121,21 @@ $(function(){
 
 	});
 	$('.btnTambahTombol').on('click', function(){
-
 		$('#formTombolTitle').html('Tambah Tombol');		
-		// $('#nama_tempat_wisata').val('');		
 		document.getElementById('form_tombol').reset();
 		$('.modal-content form').attr('action','/tambah-tombol');
 
 	});
 
 	$('.tombolModalHapus').on('click', function(){
-
-		const id = $(this).data('id');
-		// console.log(id);
+		const id = $(this).data('id');		
 		$.ajax({		
 			url: '/tombol/edit/' + id,			
-			method: 'get',
-			// dataType: json,			
+			method: 'get',	
 			success: function(data){	
-
 				data=JSON.parse(data);		
-				// console.log(data);
 				$('#id_tombol_hapus').val(data.id_tombol);	
-				// console.log($('#id_tombol_hapus').val());			
 				$('#id_tombol_tempat_wisata_hapus').val(data.id_tempat_wisata);	
-				// console.log($('#id_tombol_tempat_wisata_hapus').val());			
 				$('#form_tombol').attr('action','/delete-tombol/'+data.id_tombol);
 			}
 
@@ -173,4 +144,9 @@ $(function(){
 	});
 
 
+	$(document).ready(function(){		
+		vid = document.getElementById("360-vid");
+		vid.muted = true;			
+	}); 
+	
 });

@@ -68,11 +68,7 @@ class TombolController extends Controller
 	}
 
 	public function destroy(Request $request){
-		// dd($request);
-
-		TombolSpot::where('id_tombol', $request->id_tombol_hapus)->delete();
-		// dd($request->id_tempat_wisata_hapus);
-		// SpotModelsTest::destroy($request->id_hapus);
+		TombolSpot::where('id_tombol', $request->id_tombol_hapus)->delete();		
 		return redirect("/tempat-wisata/$request->id_tombol_tempat_wisata_hapus")->with('status_tombol','Tombol Spot Berhasil Dihapus.');
 	}
 }

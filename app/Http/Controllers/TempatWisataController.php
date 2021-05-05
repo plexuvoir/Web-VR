@@ -9,21 +9,18 @@ class TempatWisataController extends Controller
 {
     public function TempatWisataArrays()
 	{
-		$tempatWisataArrays = TempatWisataModel::all();
-		// dd($tempatWisataArrays);
+		$tempatWisataArrays = TempatWisataModel::all();		
 		return view('admin-home', compact('tempatWisataArrays'));
 	}
 
 	public function tambah(Request $request)
 	{
-		// $tempatWisata = new TempatWisataModel;
-		// $tempatWisata->nama_tempat_wisata= $request->nama_tempat_wisata;
-		// $tempatWisata->save();		
 		$request->validate([
 			'nama_tempat_wisata' => 'required'
-		]);
+		]);		
 		TempatWisataModel::create([
-			'nama_tempat_wisata' => $request->nama_tempat_wisata
+			'nama_tempat_wisata' => $request->nama_tempat_wisata,
+			'thumbnail' => $request->thumbnail_tempat_wisata
 		]);
 		return redirect('/admin-home')->with('status','Tempat Wisata Berhasil Ditambahkan.');
 	}
@@ -39,7 +36,8 @@ class TempatWisataController extends Controller
 		]);
 		TempatWisataModel::where('id',$request->id)
 		->update([
-			'nama_tempat_wisata'=>$request->nama_tempat_wisata
+			'nama_tempat_wisata'=>$request->nama_tempat_wisata,
+			'thumbnail'=>$request->thumbnail_tempat_wisata
 		]);
 		return redirect('/admin-home')->with('status','Tempat Wisata Berhasil Diperbarui.');
 
@@ -51,13 +49,11 @@ class TempatWisataController extends Controller
 		return $tempatWisataModel[0]->toJson();
 	}	
 	public function tampilUserHome(){
-		$tempatWisataArrays = TempatWisataModel::all();
-		// dd($tempatWisataArrays);
+		$tempatWisataArrays = TempatWisataModel::all();		
 		return view('user-home', compact('tempatWisataArrays'));
 	}
 	public function tampilUserHomeTest(){
-		$tempatWisataArrays = TempatWisataModel::all();
-		// dd($tempatWisataArrays);
+		$tempatWisataArrays = TempatWisataModel::all();		
 		return view('user-home-test', compact('tempatWisataArrays'));
 	}
 }
