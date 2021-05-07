@@ -1,7 +1,7 @@
 <html>
 <head>
 	<title>My A-Frame Scene</title>
-	<script src="https://aframe.io/releases/0.8.2/aframe.min.js"></script>	
+	<script src="https://aframe.io/releases/1.0.4/aframe.min.js"></script>	
 	<script src="https://unpkg.com/aframe-event-set-component@5/dist/aframe-event-set-component.min.js"></script>
 	<script src="https://unpkg.com/aframe-layout-component@5.3.0/dist/aframe-layout-component.min.js"></script>
 	<script src="https://unpkg.com/aframe-template-component@3.2.1/dist/aframe-template-component.min.js"></script>
@@ -27,26 +27,26 @@
 		</a-camera>
 		@if($spotArrays)
 		<a-assets>
-			<video muted id="360-vid" src="{{$spotArrays['link_video_pagi']}}" loop="true" autoplay></video>
+			<video muted id="360-vid" src="{{$spotArrays['link_video_pagi']}}" loop="true" autoplay="true"></video>
 		</a-assets>		
 		<a-videosphere src="#360-vid"></a-videosphere>
 		<a-entity sound="src:{{$spotArrays['link_suara_pagi']}}; autoplay: true; loop:true"></a-entity>
 		@foreach ($tombolArrays as $tombolArray)
-		<a-entity geometry="primitive: box; height:2; width:10; depth:0.5" material="color:#0275d8; side: double; opacity:1;" position="{{$tombolArray->x_pos}} {{$tombolArray->y_pos}} {{$tombolArray->z_pos}}" rotation="{{$tombolArray->x_rot}} {{$tombolArray->y_rot}} {{$tombolArray->z_rot}}" href="/user-spot/{{$tombolArray->id_own}}">
+		<a-entity link="href: /user-spot/{{$tombolArray->id_own}}" geometry="primitive: box; height:2; width:10; depth:0.5" material="color:#0275d8; side: double; opacity:1;" position="{{$tombolArray->x_pos}} {{$tombolArray->y_pos}} {{$tombolArray->z_pos}}" rotation="{{$tombolArray->x_rot}} {{$tombolArray->y_rot}} {{$tombolArray->z_rot}}">
 			<a-text font="roboto" value="{{$tombolArray->nama_own}}" width="20" position="0 0 0.3" rotation="0 0 0" align="center" href="/user-spot/{{$tombolArray->id_own}}"></a-text>
 		</a-entity>			
 		@endforeach
-		<a-entity geometry="primitive: box; height:2; width:10; depth:0.5" material="color:#0275d8; side: double; opacity:1;" position="-2 -20 -20" rotation="-45 0 0" href="/user-spot-sore/{{$spotArrays->id_spot}}">
-			<a-text font="roboto" value="Sore" width="20" position="0 0 1" rotation="0 0 0" align="center" href="/user-spot-sore/{{$spotArrays->id_spot}}"></a-text>
+		<a-entity link="href: /user-spot-sore/{{$spotArrays->id_spot}}" geometry="primitive: box; height:2; width:10; depth:0.5" material="color:#0275d8; side: double; opacity:1;" position="-2 -20 -20" rotation="-45 0 0" href="/user-spot-sore/{{$spotArrays->id_spot}}">
+			<a-text font="roboto" value="Sore" width="20" position="0 0 1" rotation="0 0 0" align="center"></a-text>
 		</a-entity>	
-		<a-entity geometry="primitive: box; height:2; width:2; depth:0.5" material="color:#0275d8; side: double; opacity:1;" position="5 -20 -20" rotation="-45 0 0" href="/user-home">
-			<a-image src="https://cdn.glitch.com/d7743f86-5ed0-4cb5-b749-2d186df7515a%2Fhome.png?v=1620020548636" position="0 0 0.5" rotation="0 0 0" align="center" href="/user-home"></a-image>				
+		<a-entity link="href: /user-home" geometry="primitive: box; height:2; width:2; depth:0.5" material="color:#0275d8; side: double; opacity:1;" position="5 -20 -20" rotation="-45 0 0" href="/user-home">
+			<a-image src="https://cdn.glitch.com/d7743f86-5ed0-4cb5-b749-2d186df7515a%2Fhome.png?v=1620020548636" position="0 0 0.5" rotation="0 0 0" align="center"></a-image>				
 		</a-entity>	
 		@else
 		<a-sky color="#00BFFF"></a-sky>
 		<a-text font="roboto" value="Belum ada spot. \nArahkan pandangan ke tombol home untuk kembali." width="10" position="0 7 -20" rotation="0 0 0" align="center" color="black" scale="3 3 3"></a-text>
-		<a-entity geometry="primitive: box; height:2; width:2; depth:0.5" material="color:#0275d8; side: double; opacity:1;" position="0 3 -20" rotation="0 0 0" href="/user-home">
-			<a-image src="https://cdn.glitch.com/d7743f86-5ed0-4cb5-b749-2d186df7515a%2Fhome.png?v=1620020548636" position="0 0 0.5" rotation="0 0 0" align="center" href="/user-home"></a-image>				
+		<a-entity link="href: /user-home" geometry="primitive: box; height:2; width:2; depth:0.5" material="color:#0275d8; side: double; opacity:1;" position="0 3 -20" rotation="0 0 0" href="/user-home">
+			<a-image src="https://cdn.glitch.com/d7743f86-5ed0-4cb5-b749-2d186df7515a%2Fhome.png?v=1620020548636" position="0 0 0.5" rotation="0 0 0" align="center"></a-image>				
 		</a-entity>	
 		@endif
 	</a-scene>

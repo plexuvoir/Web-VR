@@ -1,7 +1,7 @@
 <html>
 <head>
 	<title>My A-Frame Scene</title>
-	<script src="https://aframe.io/releases/0.8.2/aframe.min.js"></script>
+	<script src="https://aframe.io/releases/1.0.4/aframe.min.js"></script>
 	<script src="https://unpkg.com/aframe-immersive-video-component/dist/aframe-immersive-video-component.min.js"></script>
 	<script src="https://unpkg.com/aframe-event-set-component@5/dist/aframe-event-set-component.min.js"></script>
 	<script src="https://unpkg.com/aframe-layout-component@5.3.0/dist/aframe-layout-component.min.js"></script>
@@ -14,7 +14,8 @@
 </head>
 
 <body>
-	<a-scene>		
+	<a-scene canvas="" keyboard-shortcuts="" vr-mode-ui="">		
+
 		<a-sky color="#00BFFF"></a-sky>
 		<a-camera id="camera" look-controls="" wasd-controls-enabled="false" camera="active:true" rotation="-1.3750987083139854 -3.0939720937064483 0" position="0 0 0">
 			<a-ring radius-outer="0.30" radius-inner="0.20" position="0 0 -3" material="color: cyan; shader: flat" cursor="maxDistance: 30; fuse: true" geometry="primitive:ring;radiusOuter:0.30;radiusInner:0.20" raycaster="" scale="0.4628376812078244 0.4628376812078244 0.4628376812078244">
@@ -40,11 +41,17 @@
 		@endphp
 		@endif		
 
-		<a-image id="thumbnail" src="{{$tempatWisataArray->thumbnail}}" width="6" height="3.5" position="{{$x}} {{$y}} -10" rotation="0 0 0" href="user-vr/{{$tempatWisataArray->id}}">			
+		<!-- <a-image id="thumbnail" src="{{$tempatWisataArray->thumbnail}}" width="6" height="3.5" position="{{$x}} {{$y}} -10" rotation="0 0 0" href="user-vr/{{$tempatWisataArray->id}}">			
 			<a-plane color="#CCC" height="0.4" width="6" position="0 1.7 0.01" ></a-plane>
 			<a-text font="roboto" value="{{$tempatWisataArray->nama_tempat_wisata}}" position="0 1.7 0.01" align="center" width="3" color="black" scale="2 2 2"></a-text>				
-		</a-image>			
+		</a-image>			 -->
+		<a-entity link="href: /user-vr/{{$tempatWisataArray->id}}">
+			<a-image id="thumbnail" src="{{$tempatWisataArray->thumbnail}}" width="6" height="3.5" position="{{$x}} {{$y}} -10" rotation="0 0 0">			
+				<a-plane color="#CCC" height="0.4" width="6" position="0 1.7 0.01" ></a-plane>
+				<a-text font="roboto" value="{{$tempatWisataArray->nama_tempat_wisata}}" position="0 1.7 0.01" align="center" width="3" color="black" scale="2 2 2"></a-text>
 
+			</a-image>			
+		</a-entity>				
 		@php
 		$x+=7;
 		$nextLine+=1;			

@@ -1,7 +1,7 @@
 <html>
 <head>
 	<title>My A-Frame Scene</title>
-	<script src="https://aframe.io/releases/0.8.2/aframe.min.js"></script>	
+	<script src="https://aframe.io/releases/1.0.4/aframe.min.js"></script>	
 	<script src="https://unpkg.com/aframe-event-set-component@5/dist/aframe-event-set-component.min.js"></script>
 	<script src="https://unpkg.com/aframe-layout-component@5.3.0/dist/aframe-layout-component.min.js"></script>
 	<script src="https://unpkg.com/aframe-template-component@3.2.1/dist/aframe-template-component.min.js"></script>
@@ -31,15 +31,15 @@
 		</a-camera>				
 		<a-videosphere src="#360-vid"></a-videosphere>
 		@foreach ($tombolArrays as $tombolArray)
-		<a-entity geometry="primitive: box; height:2; width:10; depth:0.5" material="color:#0275d8; side: double; opacity:1;" position="{{$tombolArray->x_pos}} {{$tombolArray->y_pos}} {{$tombolArray->z_pos}}" rotation="{{$tombolArray->x_rot}} {{$tombolArray->y_rot}} {{$tombolArray->z_rot}}" href="/user-spot-sore/{{$tombolArray->id_own}}">
+		<a-entity link="href: /user-spot-sore/{{$tombolArray->id_own}}" geometry="primitive: box; height:2; width:10; depth:0.5" material="color:#0275d8; side: double; opacity:1;" position="{{$tombolArray->x_pos}} {{$tombolArray->y_pos}} {{$tombolArray->z_pos}}" rotation="{{$tombolArray->x_rot}} {{$tombolArray->y_rot}} {{$tombolArray->z_rot}}">
 			<a-text font="roboto" value="{{$tombolArray->nama_own}}" width="20" position="0 0 0.3" rotation="0 0 0" align="center" href="/user-spot-sore/{{$tombolArray->id_own}}"></a-text>
 		</a-entity>			
 		@endforeach
 
-		<a-entity geometry="primitive: box; height:2; width:10; depth:0.5" material="color:#0275d8; side: double; opacity:1;" position="-2 -20 -20" rotation="-45 0 0" href="/user-spot/{{$spotArrays->id_spot}}">
-			<a-text font="roboto" value="Pagi" width="20" position="0 0 1" rotation="0 0 0" align="center" href="/user-spot/{{$spotArrays->id_spot}}"></a-text>
+		<a-entity link="href: /user-spot/{{$spotArrays->id_spot}}" geometry="primitive: box; height:2; width:10; depth:0.5" material="color:#0275d8; side: double; opacity:1;" position="-2 -20 -20" rotation="-45 0 0" href="/user-spot/{{$spotArrays->id_spot}}">
+			<a-text font="roboto" value="Pagi" width="20" position="0 0 1" rotation="0 0 0" align="center"></a-text>
 		</a-entity>	
-		<a-entity geometry="primitive: box; height:2; width:2; depth:0.5" material="color:#0275d8; side: double; opacity:1;" position="5 -20 -20" rotation="-45 0 0" href="/user-home">
+		<a-entity link="href: /user-home" geometry="primitive: box; height:2; width:2; depth:0.5" material="color:#0275d8; side: double; opacity:1;" position="5 -20 -20" rotation="-45 0 0">
 			<a-image src="https://cdn.glitch.com/d7743f86-5ed0-4cb5-b749-2d186df7515a%2Fhome.png?v=1620020548636" position="0 0 0.5" rotation="0 0 0" align="center" href="/user-home"></a-image>				
 		</a-entity>	
 	</a-scene>
