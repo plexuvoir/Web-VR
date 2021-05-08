@@ -13,6 +13,24 @@
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.min.js" integrity="sha384-pQQkAEnwaBkjpqZ8RU1fF1AKtTcHJwFl3pblpTlHXybJjHpMYo79HY3hIi4NKxyj" crossorigin="anonymous"></script>
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 	<script type="text/javascript" src="{{ URL::asset('js/script.js') }}"></script>
+	<script>
+		AFRAME.registerComponent('play-pause', {
+			init: function(){
+				var myVideo =  document.querySelector('#vid-360');				
+				var videoControls = document.querySelector('#videoControls');				
+				this.el.addEventListener('click', function(){
+					if (myVideo.paused) {
+						myVideo.play();
+						videoControls.setAttribute('visible','false');		
+						videoControls.setAttribute('scale','0 0 0');				
+					}
+
+				});
+
+			}
+
+		});
+	</script>
 
 	
 </head>
@@ -20,16 +38,17 @@
 <body>
 	<a-scene>	
 		<a-assets>
-			<video muted id="360-vid" src="{{$spotArrays['link_video_sore']}}" loop="true" autoplay></video>
+			<video muted id="vid-360" src="{{$spotArrays['link_video_sore']}}" loop="true" autoplay></video>
+			<img id="play" src="https://cdn.glitch.com/d7743f86-5ed0-4cb5-b749-2d186df7515a%2Ficons8-play-64.png?v=1619076158162">
+			<img id="pause" src="https://cdn.glitch.com/d7743f86-5ed0-4cb5-b749-2d186df7515a%2Ficons8-pause-64.png?v=1619076158162">
 		</a-assets>	
-		<a-entity sound="src:{{$spotArrays['link_suara_sore']}}; autoplay: true; loop:true"></a-entity>
-		<a-camera id="camera" look-controls="" wasd-controls-enabled="false" camera="active:true" rotation="-1.3750987083139854 -3.0939720937064483 0" position="0 0 0">
-			<a-ring radius-outer="0.30" radius-inner="0.20" position="0 0 -3" material="color: cyan; shader: flat" cursor="maxDistance: 30; fuse: true" geometry="primitive:ring;radiusOuter:0.30;radiusInner:0.20" raycaster="" scale="0.4628376812078244 0.4628376812078244 0.4628376812078244">
-				<a-animation begin="click" easing="ease-in" attribute="scale" fill="backwards" from="0.1 0.1 0.1" to="1 1 1" dur="150"></a-animation>
-				<a-animation begin="fusing" easing="ease-in" attribute="scale" fill="forwards" from="1 1 1" to="0.1 0.1 0.1" dur="1500"></a-animation>
-			</a-ring>
-		</a-camera>				
-		<a-videosphere src="#360-vid"></a-videosphere>
+		<a-entity sound="src:{{$spotArrays['link_suara_sore']}}; autoplay: true; loop:true"></a-entity>				
+		<a-entity camera look-controls>
+			<a-entity cursor="fuse: true; fuseTimeout: 1500" position="0 0 -1" geometry="primitive: ring; radiusInner: 0.02; radiusOuter: 0.03" material="color: red; shader: flat">
+			</a-entity>
+		</a-entity>
+		<a-videosphere src="#vid-360"></a-videosphere>
+		<a-image id="videoControls" src="#play" position="0 0 -2" scale="5 5 1" visible="false" play-pause></a-image>
 		@foreach ($tombolArrays as $tombolArray)
 		<a-entity link="href: /user-spot-sore/{{$tombolArray->id_own}}" geometry="primitive: box; height:2; width:10; depth:0.5" material="color:#0275d8; side: double; opacity:1;" position="{{$tombolArray->x_pos}} {{$tombolArray->y_pos}} {{$tombolArray->z_pos}}" rotation="{{$tombolArray->x_rot}} {{$tombolArray->y_rot}} {{$tombolArray->z_rot}}">
 			<a-text font="roboto" value="{{$tombolArray->nama_own}}" width="20" position="0 0 0.3" rotation="0 0 0" align="center" href="/user-spot-sore/{{$tombolArray->id_own}}"></a-text>
