@@ -21,7 +21,8 @@
 				this.el.addEventListener('click', function(){
 					if (myVideo.paused) {
 						myVideo.play();
-						videoControls.setAttribute('visible','false');						
+						videoControls.setAttribute('visible','false');					
+						videoControls.setAttribute('scale','0 0 0');		
 					}
 
 				});
@@ -30,10 +31,12 @@
 
 		});
 	</script>
+
 </head>
 
 <body>
 	<a-scene antialias="true">
+		<a-entity id="includedScene"></a-entity>
 		
 		<a-assets>
 			<video muted id="vid-360" src="https://cdn.glitch.com/d7743f86-5ed0-4cb5-b749-2d186df7515a%2Fmaldives.mp4?v=1618466951948" loop="true"></video>
@@ -48,6 +51,10 @@
 		<a-image id="videoControls" src="#play" position="0 0 -2" scale="5 5 1" visible="false" play-pause></a-image>     
 
 		<a-entity sound="src:https://cdn.glitch.com/d7743f86-5ed0-4cb5-b749-2d186df7515a%2Fsound1.mp3?v=1620190669261; autoplay: true; loop:true"></a-entity>
+
+		<a-entity class="button-test" link="href: /user-vr/26" geometry="primitive: box; height:2; width:10; depth:0.5" material="color:#0275d8; side: double; opacity:1;" position="-2 -20 -20" rotation="-45 0 0">
+			<a-text font="roboto" value="Test ke 26" width="20" position="0 0 1" rotation="0 0 0" align="center"></a-text>
+		</a-entity>	
 
 
 	</a-scene>

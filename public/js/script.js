@@ -147,7 +147,7 @@ $(function(){
 	$(document).ready(function(){		
 		vid = document.getElementById("vid-360");
 		vid.muted = true;	
-		vid.autoplay = false;		
-	}); 
+		vid.autoplay = false;				
+	}); 	
 	
 });
