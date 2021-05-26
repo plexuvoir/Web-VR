@@ -27,12 +27,12 @@
 
 		@php
 		$x = -3.5;
-		$y = 4;	
-		$nextLine = 1;			
+		$y = 8.5;	
+		$nextLine = 0;			
 		@endphp
 
 		@forelse($tempatWisataArrays as $tempatWisataArray)			
-		@if ($nextLine%3==0)
+		@if ($nextLine%2==0)
 		@php
 		$y-=4.5; 
 		$x=-3.5;
